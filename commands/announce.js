@@ -10,7 +10,6 @@ module.exports.run = async (bot, message, args) => {
     }
     let announceEmbed = new Discord.MessageEmbed()
             .setAuthor('Armys Chillin', "https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
-            .setTitle("New Announcement!")
             .setThumbnail("https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
             .setDescription(`${messageText}`)
             .setColor("RANDOM")
