@@ -1,8 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async (bot, message, args) => {
-    if(!helpArgs[0]) {
-        var embed = new Discord.MessageEmbed()
+     var embed = new Discord.MessageEmbed()
             .setAuthor(`Commands:`)
             .setDescription('```ping | help | embed```')
             .addFields({ name: 'Prefix', value: '```*```', inline: true})
