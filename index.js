@@ -18,7 +18,6 @@ bot.on("guildMemberAdd", member => {
 
     member.guild.fetchInvites().then(guildInvites => {
         const ei = invites[member.guild.id];
-        invites[member.guild.id] = guildInvites;
         const numberInvite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
         const inviter = client.users.get(invite.inviter.id);    
         const logChannel = member.guild.channels.find(channel => channel.name === "join-logs");
