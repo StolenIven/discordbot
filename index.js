@@ -35,10 +35,10 @@ bot.on("guildMemberAdd", async member => {
   const newInvites = await member.guild.fetchInvites();
   guildInvites.set(member.guild.id, newInvites);
   try {
-      const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
+      const invites = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
       const logChannel = member.guild.channels.cache.find(channel => channel.id === '720413308468985946');
       if(logChannel) {
-          logChannel.send(`${member} **joined**; Invited by **${inviter}**. (**${invite.uses}** invites)`);
+          logChannel.send(`${member} **joined**; Invited by **${invites.inviter.name}**. (**${invites.uses}** invites)`);
       }
   }
   catch(err) {
