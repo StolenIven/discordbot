@@ -37,7 +37,7 @@ bot.on("guildMemberAdd", async member => {
   try {
       const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
       const logChannel = member.guild.channels.cache.find(channel => channel.id === '720413308468985946');
-      if(welcomeChannel) {
+      if(logChannel) {
           logChannel.send(`${member} **joined**; Invited by **${inviter}**. (**${invite.uses}** invites)`);
       }
   }
