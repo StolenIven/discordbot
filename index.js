@@ -3,7 +3,7 @@ const botsettings = require('./botsettings.json');
 const guildInvites = new Map();
 const bot = new Discord.Client({disableEveryone: true});
 
-bot.on("guildMemberAdd", member => {
+bot.on("guildMemberAdd", async member => {
     const welcomeChannel = member.guild.channels.cache.find(channel => channel.id === '722175564538183881')
     welcomeChannel.send (`Let's all give a warm welcome to ${member}!`)
         const welcomeEmbed = new Discord.MessageEmbed()
@@ -15,6 +15,25 @@ bot.on("guildMemberAdd", member => {
             .setTimestamp()
 
     welcomeChannel.send(welcomeEmbed);
+
+    const cachedInvites = guildInvites.get(member.guild.id);
+    const newInvites = await member.guild.fetchInvites();
+    guildInvites.set(member.guild.id, newInvites);
+    try {
+        const invites = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
+        const logChannel = member.guild.channels.cache.find(channel => channel.id === '720413308468985946');
+        if(logChannel) {
+            logChannel.send(`${member} **joined**; Invited by **${invites.inviter.name}**. (**${invites.uses}** invites)`);
+        }
+    }
+    catch(err) {
+        console.log(err);
+    }
+  
+      let myGuild = bot.guilds.cache.get('718244007859322920');
+      let memberCount = myGuild.memberCount;
+      let memberCountChannel = myGuild.channels.cache.get('720365453989511289');
+      memberCountChannel.setName(`❱ Army Count: ${memberCount}`);
 });
 
 bot.on('ready', () => {
@@ -28,27 +47,6 @@ bot.on('ready', () => {
   let memberCountChannel = myGuild.channels.cache.get('720365453989511289');
   memberCountChannel.setName(`❱ Army Count: ${memberCount}`);
         });
-});
-
-bot.on("guildMemberAdd", async member => {
-  const cachedInvites = guildInvites.get(member.guild.id);
-  const newInvites = await member.guild.fetchInvites();
-  guildInvites.set(member.guild.id, newInvites);
-  try {
-      const invites = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
-      const logChannel = member.guild.channels.cache.find(channel => channel.id === '720413308468985946');
-      if(logChannel) {
-          logChannel.send(`${member} **joined**; Invited by **${invites.inviter.name}**. (**${invites.uses}** invites)`);
-      }
-  }
-  catch(err) {
-      console.log(err);
-  }
-
-    let myGuild = bot.guilds.cache.get('718244007859322920');
-    let memberCount = myGuild.memberCount;
-    let memberCountChannel = myGuild.channels.cache.get('720365453989511289');
-    memberCountChannel.setName(`❱ Army Count: ${memberCount}`);
 });
 
 bot.on("guildMemberRemove", member => {
