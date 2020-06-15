@@ -17,20 +17,27 @@ bot.on("guildMemberAdd", member => {
     welcomeChannel.send(welcomeEmbed);
 });
 
-bot.on('guildMemberAdd', async member => {
-    const cachedInvites = guildInvites.get(member.guild.id);
-    const newInvites = await member.guild.fetchInvites();
-    guildInvites.set(member.guild.id, newInvites);
-    try {
-        const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
-        const logChannel = member.guild.channels.cache.find(channel => channel.id === '720413308468985946');
-        if(logChannel) {
-            logChannel.send(`${member.user.tag} **joined**; Invited by ${usedInvite.inviter.tag}. (**${usedInvite.uses}**)`).catch(err => console.log(err));
-        }
-    }
-    catch(err) {
-        console.log(err);
-    }
+const invites = {};
+const wait = require('util').promisify(setTimeout);
+
+client.on('ready', () => {
+  wait(1000);
+  client.guilds.forEach(g => {
+    g.fetchInvites().then(guildInvites => {
+      invites[g.id] = guildInvites;
+    });
+  });
+});
+
+client.on("guildMemberAdd", member => {
+    member.guild.fetchInvites().then(guildInvites => {
+      const ei = invites[member.guild.id];
+      invites[member.guild.id] = guildInvites;
+      const numberInvite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+      const inviter = client.users.get(invite.inviter.id);    
+      const logChannel = member.guild.channels.find(channel => channel.name === "join-logs");
+      logChannel.send(`${member.user.tag} **joined**; Invited by ${inviter.tag}. (**${invite.uses}**)`);
+    });
 });
 
 require("./util/eventHandler")(bot)
