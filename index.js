@@ -30,7 +30,7 @@ bot.on('ready', () => {
 
   let myGuild = bot.guilds.cache.get('718244007859322920');
   let memberCount = myGuild.memberCount;
-  let memberCountChannel = myGuild.channels.cache.channelsget('720365453989511289');
+  let memberCountChannel = myGuild.channels.cache.get('720365453989511289');
   memberCountChannel.setName(`Member Count: ${memberCount}`);
 });
 
