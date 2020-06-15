@@ -4,7 +4,7 @@ const guildInvites = new Map();
 const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("guildMemberAdd", member => {
-    const welcomeChannel = member.guild.channels.cache.find(channel => channel.name === '▸welcome')
+    const welcomeChannel = member.guild.channels.cache.find(channel => channel.id === '722175564538183881')
     welcomeChannel.send (`Let's all give a warm welcome to ${member}!`)
         const welcomeEmbed = new Discord.MessageEmbed()
             .setAuthor('Armys Chillin', "https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
