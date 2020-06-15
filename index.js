@@ -36,7 +36,7 @@ bot.on("guildMemberAdd", member => {
       const numberInvite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
       const inviter = bot.users.get(invite.inviter.id);    
       const logChannel = member.guild.channels.find(channel => channel.name === "join-logs");
-      logChannel.send(`${member.user.tag} **joined**; Invited by **${inviter.tag}**. (**${invite.uses}**)`);
+      logChannel.send(`${member.user} **joined**; Invited by **${inviter.tag}**. (**${invite.uses}**)`);
     });
 });
 
