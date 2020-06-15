@@ -22,7 +22,7 @@ const wait = require('util').promisify(setTimeout);
 
 bot.on('ready', () => {
   wait(1000);
-  bot.guilds.forEach(g => {
+  bot.guilds.cache.forEach(g => {
     g.fetchInvites().then(guildInvites => {
       invites[g.id] = guildInvites;
     });
