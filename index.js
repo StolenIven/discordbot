@@ -17,7 +17,6 @@ bot.on("guildMemberAdd", member => {
     welcomeChannel.send(welcomeEmbed);
 });
 
-bot.on('inviteCreate', async invite => guildInvites.set(invite.guild.id, await invite.guild.fetchInvites()));
 bot.on('ready', () => {
   bot.guilds.cache.forEach(guild => {
     guild.fetchInvites()
