@@ -15,14 +15,22 @@ bot.on("guildMemberAdd", member => {
             .setTimestamp()
 
     welcomeChannel.send(welcomeEmbed);
+});
 
-    member.guild.fetchInvites().then(guildInvites => {
-        const ei = invites[member.guild.id];
-        const numberInvite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-        const inviter = client.users.get(invite.inviter.id);    
-        const logChannel = member.guild.channels.find(channel => channel.name === "join-logs");
-        logChannel.send(`${member.user.tag} **joined**; Invited by **${inviter.tag}**. (**${invite.uses}**)`);
-    })
+bot.on('guildMemberAdd', async member => {
+    const cachedInvites = guildInvites.get(member.guild.id);
+    const newInvites = await member.guild.fetchInvites();
+    guildInvites.set(member.guild.id, newInvites);
+    try {
+        const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
+        const logChannel = member.guild.channels.cache.find(channel => channel.id === '720413308468985946');
+        if(logChannel) {
+            logChannel.send(`${member.user.tag} **joined**; Invited by ${usedInvite.inviter.tag}. (**${usedInvite.uses}**)`).catch(err => console.log(err));
+        }
+    }
+    catch(err) {
+        console.log(err);
+    }
 });
 
 require("./util/eventHandler")(bot)
