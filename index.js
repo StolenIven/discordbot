@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const botsettings = require('./botsettings.json');
-
+const guildInvites = new Map();
 const bot = new Discord.Client({disableEveryone: true});
 
 bot.on("guildMemberAdd", member => {
