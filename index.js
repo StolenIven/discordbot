@@ -17,32 +17,34 @@ bot.on("guildMemberAdd", member => {
     welcomeChannel.send(welcomeEmbed);
 });
 
-const invites = {};
-const wait = require('util').promisify(setTimeout);
-
+bot.on('inviteCreate', async invite => guildInvites.set(invite.guild.id, await invite.guild.fetchInvites()));
 bot.on('ready', () => {
-  wait(1000);
-  bot.guilds.cache.forEach(g => {
-    g.fetchInvites().then(guildInvites => {
-      invites[g.id] = guildInvites;
-    });
-  });
+  bot.guilds.cache.forEach(guild => {
+    guild.fetchInvites()
+        .then(invites => guildInvites.set(guild.id, invites))
+        .catch(err => console.log(err));
 
   let myGuild = bot.guilds.cache.get('718244007859322920');
   let memberCount = myGuild.memberCount;
   let memberCountChannel = myGuild.channels.cache.get('720365453989511289');
   memberCountChannel.setName(`Member Count: ${memberCount}`);
+        });
 });
 
-bot.on("guildMemberAdd", member => {
-    member.guild.fetchInvites().then(guildInvites => {
-      const ei = invites[member.guild.id];
-      invites[member.guild.id] = guildInvites;
-      const numberInvite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-      const inviter = bot.users.get(invites.inviter.name);    
-      const logChannel = member.guild.channels.find(c => c.id === "720413308468985946");
-      logChannel.send(`${member} **joined**; Invited by **${inviter}**. (**${invite.uses}**)`);
-    });
+bot.on("guildMemberAdd", async member => {
+  const cachedInvites = guildInvites.get(member.guild.id);
+  const newInvites = await member.guild.fetchInvites();
+  guildInvites.set(member.guild.id, newInvites);
+  try {
+      const usedInvite = newInvites.find(inv => cachedInvites.get(inv.code).uses < inv.uses);
+      const logChannel = member.guild.channels.cache.find(channel => channel.id === '720413308468985946');
+      if(welcomeChannel) {
+          logChannel.send(`${member} **joined**; Invited by **${inviter}**. (**${invite.uses}** invites)`);
+      }
+  }
+  catch(err) {
+      console.log(err);
+  }
 
     let myGuild = bot.guilds.cache.get('718244007859322920');
     let memberCount = myGuild.memberCount;
