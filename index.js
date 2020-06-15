@@ -20,21 +20,21 @@ bot.on("guildMemberAdd", member => {
 const invites = {};
 const wait = require('util').promisify(setTimeout);
 
-client.on('ready', () => {
+bot.on('ready', () => {
   wait(1000);
-  client.guilds.forEach(g => {
+  bot.guilds.forEach(g => {
     g.fetchInvites().then(guildInvites => {
       invites[g.id] = guildInvites;
     });
   });
 });
 
-client.on("guildMemberAdd", member => {
+bot.on("guildMemberAdd", member => {
     member.guild.fetchInvites().then(guildInvites => {
       const ei = invites[member.guild.id];
       invites[member.guild.id] = guildInvites;
       const numberInvite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-      const inviter = client.users.get(invite.inviter.id);    
+      const inviter = bot.users.get(invite.inviter.id);    
       const logChannel = member.guild.channels.find(channel => channel.name === "join-logs");
       logChannel.send(`${member.user.tag} **joined**; Invited by ${inviter.tag}. (**${invite.uses}**)`);
     });
