@@ -7,7 +7,7 @@ bot.on("guildMemberAdd", async member => {
     const welcomeChannel = member.guild.channels.cache.find(channel => channel.id === '722175564538183881')
     welcomeChannel.send (`Let's all give a warm welcome to ${member}!`)
         const welcomeEmbed = new Discord.MessageEmbed()
-            .setAuthor('Armys Chillin', "https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
+            .setAuthor(`${member.guild.name}`, "https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
             .setTitle("Welcome!")
             .setThumbnail("https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
             .setDescription(`Hello ${member}, we are so glad to have you here at ${member.guild.name}!\n\nFor starters, make sure to look over <#718310831535685642> and follow all regulations when chatting. Violations may result in a **mute**, **kick** or **ban**. \n\nWe'd love for you to introduce yourself to us! Feel free to do so in <#718246633573187705>! \n\nCheck out the variety of cool roles in <#718435782850904074> & <#718405986842312804>. We hope to see you join us chatting in <#718244007859322923>! ♡`)

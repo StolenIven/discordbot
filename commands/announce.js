@@ -24,6 +24,6 @@ module.exports.config = {
     name: "announce",
     description: "announce embed",
     usage: "<channel id> <msg>",
-    accessableby: "Members",
+    accessableby: "Admins",
     aliases: []
 }
