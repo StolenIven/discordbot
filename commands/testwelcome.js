@@ -2,10 +2,8 @@ const Discord = require("discord.js")
 const botconfig = require("../botsettings.json");
 
 module.exports.run = async (bot, message, args) => {
-
-    message.channel.send (`Let's all give a warm welcome to ${member}!`) 
-    if (message.member.id != "255866063630237697") {
-        return message.channel.send(`ERROR: Missing Permission **BOT_OWNER**`);
+    message.channel.send (`Let's all give a warm welcome to ${message.member}!`) 
+    if (message.member.id != "255866063630237697") { return message.channel.send(`ERROR: Missing Permission **BOT_OWNER**`);
     }
         const welcomeEmbed = new Discord.MessageEmbed()
             .setAuthor(`${member.guild.name}`, "https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
