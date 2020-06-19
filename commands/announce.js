@@ -9,8 +9,8 @@ module.exports.run = async (bot, message, args) => {
     let messageText = message.content.split(`*announce ${rChannel.id}`).join("");
         if (!messageText) return message.channel.send(`You did not specify your message to send!`);
     let announceEmbed = new Discord.MessageEmbed()
-            .setAuthor(`${message.guild.name}`, "https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
-            .setThumbnail("https://cdn.discordapp.com/attachments/594018667755339795/721134037170913310/image0.gif")
+            .setAuthor(`${message.guild.name}`, `${guild.icon}`)
+            .setThumbnail(`${guild.icon}`)
             .setDescription(messageText)
             .setColor("RANDOM")
             .setFooter("Announced by: " + `${message.author.tag}`)
