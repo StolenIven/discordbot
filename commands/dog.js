@@ -8,8 +8,9 @@ module.exports.run = async (bot, message, args) => {
 
     const dogEmbed = new Discord.MessageEmbed()
     .setImage(img)
+    .setTitle(`From /r/${random}`)
+    .setURL(`http://reddit.com/${random}`)
 
-    message.channel.send("Test");
     message.channel.send(dogEmbed);
 
 }
