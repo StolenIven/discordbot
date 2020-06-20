@@ -8,6 +8,8 @@ module.exports.run = async (bot, message, args) => {
 
     const btsEmbed = new Discord.MessageEmbed()
     .setImage(img)
+    .setTitle(`From /r/${random}`)
+    .setURL(`http://reddit.com/${random}`)
 
     message.channel.send(btsEmbed);
 
