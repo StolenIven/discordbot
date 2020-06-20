@@ -9,6 +9,7 @@ module.exports.run = async (bot, message, args) => {
     const dogEmbed = new Discord.MessageEmbed()
     .setImage(img)
 
+    message.channel.send("Test");
     message.channel.send(dogEmbed);
 
 }
