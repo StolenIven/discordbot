@@ -16,7 +16,7 @@ module.exports.run = async (bot, message, args) => {
 }
 
 module.exports.config = {
-    name: "ping",
+    name: "testwelcome",
     description: "Testing welcome embed",
     usage: "*testwelcome",
     accessableby: "Admin",
