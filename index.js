@@ -1,9 +1,3 @@
-var express = require('express');
-var app = express();
-app.get("/", (request, response) => {
-    response.sendStatus(200);
-});
-
 const Discord = require('discord.js');
 const botsettings = require('./botsettings.json');
 const guildInvites = new Map();
