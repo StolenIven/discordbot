@@ -23,7 +23,7 @@ bot.on("guildMemberAdd", async member => {
             .setAuthor(`${member.guild.name}`, `https://media.discordapp.net/attachments/594018667755339795/721134037170913310/image0.gif`)
             .setTitle("Greetings!")
             .setThumbnail(member.user.displayAvatarURL())
-            .setDescription(`┌─────┊ ⟭⟬ ┊─────┐ \n\n┌─── Check these out! ──➤\n▹[☀️] <#722194553154699274> →「avoid violations\n▹[🌈] <#718435782850904074>, <#721097222757941330> + <#718405986842312804> →「self-roles」\n▹[🌻] <#718246633573187705> →「introduce yourself」\n└───────────────➤ \n\n➜ Chat w/ us here in <#718244007859322923>! εïз\n\n└─────┊ ⟬⟭ ┊─────┘`)
+            .setDescription(`┌─────┊ ⟭⟬ ┊─────┐\n\n┌─── Check these out! ──➤\n▹[☀️]<#722194553154699274> →「avoid violations\n▹[🌈]<#718435782850904074>, <#721097222757941330> + <#718405986842312804> →「self-roles\n▹[🌻]<#718246633573187705> →「introduce yourself」\n└───────────────➤\n\n➜ Chat w/ us here in <#718244007859322923>! εïз\n\n└─────┊ ⟬⟭ ┊─────┘`)
             .setImage("https://cdn.discordapp.com/attachments/721080728909250591/739058170026262608/welcomeban2.gif")
             .setColor('#FFDFBC')
             .setTimestamp()
