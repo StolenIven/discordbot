@@ -9,7 +9,7 @@ module.exports.run = async (bot, message, args) => {
     let messageText = message.content.split(`*announce ${rChannel.id}`).join("");
         if (!messageText) return message.channel.send(`You did not specify your message to send!`);
     let announceEmbed = new Discord.MessageEmbed()
-            .setAuthor(`${message.guild.name}`, `${message.guild.icon}`)
+            .setAuthor(`${message.guild.name}`)
             .setThumbnail(`${message.guild.icon}`)
             .setDescription(messageText)
             .setColor("RANDOM")
