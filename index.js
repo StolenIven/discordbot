@@ -17,7 +17,7 @@ bot.on('ready', () => {
   });
 
 bot.on("guildMemberAdd", async member => {
-    const welcomeChannel = member.guild.channels.cache.find(channel => channel.id === '722175564538183881')
+    const welcomeChannel = member.guild.channels.cache.find(channel => channel.id === '718244007859322923')
     welcomeChannel.send (`˗ˏˋ╒ :love_letter: ╛ˊˎ- ┊ᴡᴇʟᴄᴏᴍᴇ ꒰${member}꒱! •*⁀♡∘˚⬎`)
         const welcomeEmbed = new Discord.MessageEmbed()
             .setAuthor(`${member.guild.name}`, `${member.guild.icon}`)
