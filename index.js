@@ -17,13 +17,14 @@ bot.on('ready', () => {
   });
 
 bot.on("guildMemberAdd", async member => {
-    const welcomeChannel = member.guild.channels.cache.find(channel => channel.id === '718244007859322923')
+    const welcomeChannel = member.guild.channels.cache.find(channel => channel.id === '722175564538183881')
     welcomeChannel.send (`˗ˏˋ╒ :love_letter: ╛ˊˎ- ┊ᴡᴇʟᴄᴏᴍᴇ ꒰${member}꒱! •*⁀♡∘˚⬎`)
         const welcomeEmbed = new Discord.MessageEmbed()
-            .setAuthor(`${member.guild.name}`, `${member.guild.displayAvatarURL()}`)
+            .setAuthor(`${member.guild.name}`, `${member.guild.iconURL}`)
             .setTitle("Greetings!")
             .setThumbnail(member.user.displayAvatarURL())
             .setDescription(`┌─────┊ ⟭⟬ ┊─────┐ \n\n┌─── Check these out! ──➤\n▹[☀️] <#722194553154699274> →「avoid violations\n▹[🌈] <#718435782850904074>, <#721097222757941330> + <#718405986842312804> →「self-roles \n▹[🌻] <#718246633573187705> →「introduce yourself」\n└───────────────➤ \n\n└─────┊ ⟬⟭ ┊─────\n\n➜ Chat w/ us here in <#718244007859322923>! εïз`)
+            .setImage("https://cdn.discordapp.com/attachments/721080728909250591/739058170026262608/welcomeban2.gif")
             .setColor('#FFDFBC')
             .setTimestamp()
 
